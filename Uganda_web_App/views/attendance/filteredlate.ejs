@@ -1,0 +1,210 @@
+<body>
+    <!-- Sidenav -->
+    <% include ../partials/sidebar %>
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="loader_post" id="loading">
+            <div class="loader"></div>
+        </div>
+        <!-- Header -->
+        <% include ../partials/pages_header %>
+        <!-- Page content -->
+        <div class="container-fluid mt--7">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+                            <a href="/attendance/late_report"><button class="btn btn-primary btn-xs" type="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></button></a>
+                        </div>
+                        
+                        <div>
+                            <button data-toggle="tooltip" data-placement="top" title="Print" class="btn  btn-default float-right" type="submit"><i class="fa fa-print" aria-hidden="true"></i></button>
+                        </div>
+                          <table
+                            class="w-100"
+                            id="table"
+                            data-toolbar="#toolbar"
+                            data-search="true"
+                            data-show-refresh="false"
+                            data-show-fullscreen="true"
+                            data-show-columns="true"
+                            data-show-columns-toggle-all="true"
+                            data-show-export="true"
+                            data-export-types = "['xml', 'csv', 'txt','excel']"
+                            data-export-options='{"fileName": "Late Reporting Report"}'
+                            data-detail-formatter="detailFormatter"
+                            data-minimum-count-columns="2"
+                            data-pagination="true"
+                            data-id-field="id"
+                            data-page-list="[10, 25, 50, 100, all]"
+                            data-show-footer="true"
+                            data-url=""
+                            data-response-handler="responseHandler">
+
+                            <thead class="thead-light">
+                                <tr style="text-align:center;">
+                                    <th colspan="7">Late Reporting Report</th>
+                                </tr>
+                                <tr>
+                                    <th>s.no</th>
+                                    <th>Emp Name</th>
+                                    <th>Emp Id</th>
+                                    <th>Attandance Date</th>
+                                    <th>Checkin Time</th>
+                                    <th>Checkout Time</th>
+                                    <!-- <th>Checkin Location</th>
+                                    <th>Checkout Location</th> -->
+                                    <th>Late/Early</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(i=0;i<data.length;i++){ %>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <span class="mb-0" style="font-size:10px;" id="commentstext_sno"><%- i+1 %></span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <span class="mb-0" style="font-size:10px;"
+                                                    id="commentstext"><%-data[i].USERNAME %></span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <span class="mb-0" style="font-size:10px;"
+                                                    id="commentstext"><%-data[i].USER_INFO_ID %></span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <span class="mb-0" style="font-size:10px;"
+                                                    id="commentstext"><%-moment(data[i].ATTEND_DATE).format('DD-MM-YYYY')%>               
+                                          </span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <!-- <th scope="row">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <span class="mb-0" style="font-size:10px;"
+                                                    id="commentstext"><%-moment(data[i].CHECKOUT_DATE).format('DD-MM-YYYY')%></span>
+                                            </div>
+                                        </div>
+                                    </th> -->
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <span class="mb-0" style="font-size:10px;"
+                                                    id="commentstext">
+                                                    <%if(data[i].CHECKIN == '') { %>
+                                                        <%-data[i].STATUS %>
+                                                        <% } else { %>
+                                                            <%-moment(data[i].CHECKIN).format('hh:mm a') %>
+                                                        <% } %>
+                                           
+                                                    </span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <span class="mb-0" style="font-size:10px;"
+                                                    id="commentstext"><%if(data[i].CHECKOUT == '') { %>
+                                                        <%-data[i].STATUS %>
+                                                        <% } else { %>
+                                                            <%-moment(data[i].CHECKOUT).format('hh:mm a') %>
+                                                        <% } %>
+                                                    
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <!-- <th scope="row">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <span class="mb-0" style="font-size:10px;"
+                                                    id="commentstext"><%-data[i].CHECKIN_LOCATION %></span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <span class="mb-0" style="font-size:10px;"
+                                                    id="commentstext"><%-data[i].CHECKOUT_LOCATION %></span>
+                                            </div>
+                                        </div>
+                                    </th> -->
+                       
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <span class="mb-0" style="font-size:10px;"
+                                                    id="commentstext"><%-data[i].MRG_LATE %></span>
+                                                    <span class="mb-0" style="font-size:10px;"
+                                                    id="commentstext"><%-data[i].EVG_EARLY %></span>
+                                            </div>
+                                        </div>
+                                    </th>
+     
+                                </tr>
+                                <% } %>
+                            </tbody>
+                          </table>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <% include ../partials/footer %>
+        </div>
+    </div>
+    <!-- Include scripts -->
+    <% include ../partials/scripts %>
+
+    <link href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css" rel="stylesheet">
+
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <!-- <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table-locale-all.min.js"></script> -->
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/print/bootstrap-table-print.min.js"></script>
+
+    <script type="text/javascript">
+        $("#loading").hide();
+        var $table = $('#table')
+
+        $(function() {
+    
+    $table.bootstrapTable()
+  })
+  $(function () {
+        $('button[type="submit"]').click(function () {
+            
+            var pageTitle = 'Late Reporting Report',
+                stylesheet = '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
+                win = window.open('', 'Print', 'width=500,height=300');
+            win.document.write('<html><head><title>' + pageTitle + '</title>' +
+                '<link rel="stylesheet" href="' + stylesheet + '">' +
+                '</head><body>' + $('#table')[0].outerHTML + '</body></html>');
+            win.document.close();
+            win.print();
+            win.close();
+            return false;
+        });
+    });
+        </script>
+</body>

@@ -1,0 +1,62 @@
+<body>
+    <!-- Sidenav -->
+    <% include ../partials/sidebar %>
+    <!-- Main content -->
+    <div class="main-content">
+            <!-- <div class="loader_post"   id="loading">
+                    <div class="loader"></div>
+                </div> -->
+        <!-- Header -->
+        <div><% include ../partials/pages_header %></div>
+        
+        <div class="container-fluid h-100 mt--7">
+            <div style="text-align: center; font-size: large;">
+                <h1 class="btn align-items-center text-white" >Attendance Reports</h1>
+            </div>
+            
+            <div class="row h-100 justify-content-center align-items-center pt-lg-9">
+                <table class="table w-75 pt-lg--9 table-borderless">
+                    <tbody>
+                        <tr scope="row" style="outline: thin solid">
+                            <th><b>Daily Attendance Report</b>  </th>
+                            <th></th>
+                            <th class="padding-right"><a class="btn btn-sm btn-primary form-group btn-block" href="/attendance2/daily_report">Open</a></th>
+                            <!-- <div ></div> -->
+                            
+                        </tr>
+                        <tr style="outline: thin solid">
+                            <th><b>Monthly Attendance Report</b> </th>
+                            <th></th>
+                            <th class="padding-right"><a class="btn btn-sm btn-primary form-group btn-block" href="/attendance/monthly_report">Open</a></th>
+                        </tr>
+                        <tr style="outline: thin solid">
+                            <th><b>Late Reporting Report</b></th>
+                            <th></th>
+                            <th class="padding-right"><a class="btn btn-sm btn-primary form-group btn-block" href="/attendance/late_report">Open</a></th>
+                        </tr>
+                        <tr style="outline: thin solid">
+                            <th><b>Employee Wise Attendance Report</b></th>
+                            <th></th>
+                            <th class="padding-right"><a class="btn btn-sm btn-primary form-group btn-block" href="/attendance/emp_wise_report">Open</a></th>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <form class="">
+                <a class="btn btn-success form-group" href="/attendance/daily_report">Daily Report</a>
+                <a class="btn btn-success form-group" href="/attendance/monthly_report">Monthly Report</a><br>
+                <a class="btn btn-success form-group" href="/attendance/late_report">Late Report</a>
+                <a class="btn btn-success form-group" href="/attendance/emp_wise_report">Employee Wise Report</a>
+                </form>    -->
+            </div>
+        </div>
+            <!-- Footer -->
+        
+        
+        <% include ../partials/footer %>
+    </div>
+    
+    
+
+<!-- Include scripts -->
+<!-- <% include ../partials/scripts %> -->
+</body>
